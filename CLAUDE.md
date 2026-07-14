@@ -113,3 +113,53 @@ Quando o usuário pedir skill nova:
 4. Se a skill precisar de arquivos de apoio (templates, exemplos),
    criar dentro da pasta da skill
 5. Seguir o fluxo da skill-creator nativa do Claude Code
+
+---
+
+## Thaise Beauty Studio
+
+> Perfil: Solopreneur. Regras específicas do negócio, preenchidas pelo `/instalar`.
+
+### O que é esse workspace
+
+Operação digital do Thaise Beauty Studio (Limoeiro-PE) — estética avançada
+focada em olhar: brow lamination e lash lifting. Administrado por Marlon,
+parceiro da Thaise, responsável pela estrutura digital (site, backend,
+marketing) do negócio.
+
+### Quem é a marca
+
+Thaise Beauty Studio. A promessa central: com brow lamination e lash
+lifting, a cliente acorda sempre bonita — o foco é destacar o olhar sem
+precisar de extensões. Ver `_memoria/empresa.md` para detalhes.
+
+### O que produz
+
+- Conteúdo de Instagram (@thaisebeautystudio)
+- Resultados de antes/depois das clientes (fotos em `identidade/imagens da empresa/`)
+- Site institucional com galeria de resultados, avaliações e CTA para WhatsApp
+- Backend simples de gestão (clientes, ticket médio, contatos, analytics do site)
+
+### Minha audiência
+
+Mulheres de 18 a 40 anos que querem se sentir bonitas e renovar a
+autoestima. Ver `_memoria/empresa.md`.
+
+### Tom de voz
+
+Ver `_memoria/preferencias.md` — resumo: amigável, carinhoso, chama a
+cliente de "princess!", sempre puxando pro tema de autoestima e
+transformação.
+
+### Posicionamento
+
+Reforçar profissionalismo do estúdio (hoje só Instagram) com presença
+própria — site, prova social real (fotos de antes/depois, avaliações) e
+fonte de tráfego que converte pelo WhatsApp.
+
+### Regras do sistema
+
+- Fotos de clientes (antes/depois) ficam em `identidade/imagens da empresa/`
+- Logo: `identidade/logo-fundo-claro.jpeg` (fundo claro) e
+  `identidade/logo-fundo-escuro.jpeg` (fundo escuro)
+- WhatsApp de contato/CTA: 81 99870-0018
