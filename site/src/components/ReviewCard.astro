@@ -1,0 +1,36 @@
+---
+interface Props {
+  nome: string;
+  texto: string;
+  nota?: number;
+}
+
+const { nome, texto, nota = 5 } = Astro.props;
+---
+
+<article class="cartao review">
+  <p class="estrelas" aria-hidden="true">{"★".repeat(nota)}{"☆".repeat(5 - nota)}</p>
+  <p class="texto">"{texto}"</p>
+  <p class="nome rotulo">{nome}</p>
+</article>
+
+<style>
+  .review {
+    padding: 1.75rem;
+  }
+
+  .estrelas {
+    color: var(--cor-destaque);
+    letter-spacing: 0.15em;
+    margin: 0 0 0.75rem;
+  }
+
+  .texto {
+    font-style: italic;
+  }
+
+  .nome {
+    margin: 1rem 0 0;
+    opacity: 0.75;
+  }
+</style>

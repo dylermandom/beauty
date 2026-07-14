@@ -1,0 +1,367 @@
+@import url("https://fonts.googleapis.com/css2?family=Parisienne&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cormorant+Garamond:wght@300&display=swap");
+
+:root {
+  --cor-fundo: #f6eae2;
+  --cor-fundo-2: #efdcd1;
+  --cor-fundo-alt: #7c4f49;
+  --cor-fundo-alt-2: #5c3a35;
+  --cor-destaque: #a9766d;
+  --cor-destaque-2: #c98f77;
+  --cor-texto: #4a3b38;
+  --cor-texto-forte: #2b1d1a;
+  --cor-texto-claro: #f6eae2;
+  --cor-linha: rgba(124, 79, 73, 0.22);
+
+  --fonte-destaque: "Parisienne", cursive;
+  --fonte-corpo: "Cormorant Garamond", serif;
+
+  --raio-suave: 14px;
+  --raio-largo: 22px;
+  --sombra-leve: 0 8px 24px rgba(43, 29, 26, 0.1);
+  --sombra-media: 0 20px 45px rgba(43, 29, 26, 0.18), 0 4px 10px rgba(43, 29, 26, 0.1);
+  --sombra-forte: 0 40px 90px rgba(43, 29, 26, 0.32), 0 10px 24px rgba(43, 29, 26, 0.16);
+  --sombra-quente: 0 30px 60px rgba(169, 118, 109, 0.35), 0 8px 18px rgba(43, 29, 26, 0.18);
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: var(--fonte-corpo);
+  font-size: 1.15rem;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* textura sutil de grão — dá o acabamento "impresso", não achatado */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--fonte-destaque);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--cor-texto-forte);
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: clamp(3.2rem, 8.5vw, 7rem);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: clamp(2.1rem, 4.5vw, 3rem);
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: inherit;
+}
+
+.rotulo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--fonte-corpo);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cor-destaque);
+}
+
+.rotulo::before {
+  content: "";
+  width: 2.2em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.secao {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.botao {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--cor-destaque-2), var(--cor-destaque));
+  color: var(--cor-texto-claro);
+  font-family: var(--fonte-corpo);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid transparent;
+  box-shadow: var(--sombra-media);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+
+.botao:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--sombra-forte);
+}
+
+.botao-outline {
+  background: transparent;
+  color: var(--cor-texto-forte);
+  border-color: var(--cor-texto-forte);
+  box-shadow: none;
+}
+
+.botao-outline:hover {
+  box-shadow: var(--sombra-leve);
+}
+
+.cartao {
+  background: #fffdfb;
+  border: 1px solid var(--cor-linha);
+  border-radius: var(--raio-largo);
+  box-shadow: var(--sombra-leve);
+  overflow: hidden;
+  transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.cartao:hover {
+  box-shadow: var(--sombra-media);
+}
+
+/* manchas orgânicas — formas assinatura da marca, não blob de SaaS */
+.mancha {
+  position: absolute;
+  filter: blur(2px);
+  opacity: 0.55;
+  pointer-events: none;
+  z-index: 0;
+  animation: flutuar 18s ease-in-out infinite;
+  mix-blend-mode: multiply;
+}
+
+@media (max-width: 640px) {
+  .mancha {
+    opacity: 0.35;
+  }
+}
+
+.mancha-1 {
+  clip-path: path("M420,60 C520,10 640,60 660,170 C680,290 610,360 500,400 C380,440 240,420 170,330 C100,240 130,120 230,80 C300,50 360,90 420,60 Z");
+  background: radial-gradient(circle at 30% 30%, var(--cor-destaque-2), var(--cor-destaque) 70%);
+  width: 680px;
+  height: 460px;
+}
+
+.mancha-2 {
+  clip-path: path("M300,20 C400,-10 470,70 460,160 C450,260 500,320 440,390 C380,460 260,440 190,380 C110,310 40,270 60,180 C80,90 200,50 300,20 Z");
+  background: radial-gradient(circle at 60% 40%, var(--cor-fundo-alt), var(--cor-fundo-alt-2) 75%);
+  width: 480px;
+  height: 460px;
+}
+
+@keyframes flutuar {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(1.5%, -3%, 0) rotate(3deg) scale(1.04); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mancha { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* tag editorial fixa lateral — assinatura da marca, presente em toda página */
+.tag-lateral {
+  position: fixed;
+  left: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  font-family: var(--fonte-corpo);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--cor-texto-forte);
+  opacity: 0.5;
+  z-index: 25;
+  pointer-events: none;
+}
+
+@media (max-width: 960px) {
+  .tag-lateral {
+    display: none;
+  }
+}
+
+/* cursor customizado — presença sutil, cresce sobre alvos interativos */
+.cursor-ponto {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cor-texto-forte);
+  pointer-events: none;
+  z-index: 2000;
+  transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 0.35s ease, opacity 0.3s ease;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--fonte-corpo);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0;
+  color: var(--cor-texto-claro);
+}
+
+.cursor-ponto.pronto {
+  opacity: 0.85;
+}
+
+.cursor-ponto.em-alvo {
+  width: 74px;
+  height: 74px;
+  background: var(--cor-destaque);
+  font-size: 0.72rem;
+  opacity: 1;
+}
+
+@media (pointer: coarse) {
+  .cursor-ponto {
+    display: none;
+  }
+}
+
+/* elementos com cursor customizado escondem o cursor nativo */
+.cursor-alvo {
+  cursor: none;
+}
+
+@media (pointer: coarse) {
+  .cursor-alvo {
+    cursor: pointer;
+  }
+}
+
+/* composição espalhada estilo mood board — quebra a grade perfeita */
+.disperso > :nth-child(6n + 1) { --rot: -3deg; --desloc: 14px; }
+.disperso > :nth-child(6n + 2) { --rot: 2deg; --desloc: -18px; }
+.disperso > :nth-child(6n + 3) { --rot: -1.4deg; --desloc: 8px; }
+.disperso > :nth-child(6n + 4) { --rot: 2.6deg; --desloc: -10px; }
+.disperso > :nth-child(6n + 5) { --rot: -2.2deg; --desloc: 16px; }
+.disperso > :nth-child(6n) { --rot: 1.6deg; --desloc: -8px; }
+
+.disperso > :hover {
+  --rot: 0deg;
+  --desloc: -10px;
+  z-index: 5;
+}
+
+/* scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(44px) scale(0.96);
+  transition: opacity 1s cubic-bezier(0.16, 0.8, 0.24, 1), transform 1s cubic-bezier(0.16, 0.8, 0.24, 1);
+  transition-delay: var(--atraso, 0s);
+}
+
+.reveal.visivel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* tilt 3D controlado por JS (--rx / --ry / --tz) + rotação editorial estática (--rot / --desloc)
+   --revela-y / --revela-escala são independentes: usados pelo scroll reveal em .tilt.reveal,
+   assim os dois sistemas não brigam pela mesma propriedade transform */
+.tilt {
+  --rot: 0deg;
+  --desloc: 0px;
+  --revela-y: 0px;
+  --revela-escala: 1;
+  transform: perspective(1000px) translateY(calc(var(--desloc) + var(--revela-y))) scale(var(--revela-escala))
+    rotate(var(--rot)) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(var(--tz, 0px));
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s ease,
+    opacity 1s cubic-bezier(0.16, 0.8, 0.24, 1);
+  transition-delay: var(--atraso, 0s), 0s, var(--atraso, 0s);
+  will-change: transform;
+}
+
+.tilt.reveal {
+  opacity: 0;
+  --revela-y: 44px;
+  --revela-escala: 0.96;
+}
+
+.tilt.reveal.visivel {
+  opacity: 1;
+  --revela-y: 0px;
+  --revela-escala: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt.reveal {
+    opacity: 1;
+    --revela-y: 0px;
+    --revela-escala: 1;
+    transition: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .secao {
+    padding: 4rem 0;
+  }
+}

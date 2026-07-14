@@ -1,0 +1,176 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo-fundo-claro.jpeg";
+
+const links = [
+  { href: "/", label: "Início" },
+  { href: "/resultados", label: "Resultados" },
+  { href: "/avaliacoes", label: "Avaliações" },
+  { href: "/blog", label: "Blog" },
+];
+
+const atual = Astro.url.pathname;
+---
+
+<div class="barra-topo">
+  <div class="container barra-topo-inner">
+    <a href="https://wa.me/5581998700018" target="_blank" rel="noopener noreferrer">
+      (81) 99870-0018
+    </a>
+    <a href="https://instagram.com/thaisebeautystudio" target="_blank" rel="noopener noreferrer">
+      @thaisebeautystudio
+    </a>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="marca">
+      <Image src={logo} alt="Thaise Beauty Studio" width={64} height={64} class="logo" />
+      <span class="marca-nome">Thaise Beauty Studio</span>
+    </a>
+
+    <nav class="nav">
+      {
+        links.map((link) => (
+          <a href={link.href} class={atual === link.href ? "ativo" : ""}>
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
+
+<style>
+  .barra-topo {
+    background: var(--cor-texto-forte);
+    color: var(--cor-texto-claro);
+  }
+
+  .barra-topo-inner {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1.75rem;
+    padding: 0.5rem 1.5rem;
+  }
+
+  .barra-topo-inner a {
+    text-decoration: none;
+    color: var(--cor-texto-claro);
+    font-family: var(--fonte-corpo);
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    opacity: 0.85;
+  }
+
+  .barra-topo-inner a:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 640px) {
+    .barra-topo-inner {
+      justify-content: center;
+      gap: 1.1rem;
+    }
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease,
+      backdrop-filter 0.4s ease;
+  }
+
+  .header.rolado {
+    background: rgba(246, 234, 226, 0.72);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    border-bottom-color: var(--cor-linha);
+    box-shadow: var(--sombra-leve);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.1rem;
+    padding-bottom: 1.1rem;
+    gap: 1.5rem;
+  }
+
+  .marca {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--cor-texto-forte);
+  }
+
+  .marca-nome {
+    font-family: var(--fonte-destaque);
+    font-size: 1.4rem;
+  }
+
+  .logo {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: var(--sombra-leve);
+  }
+
+  .nav {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .nav a {
+    position: relative;
+    text-decoration: none;
+    font-family: var(--fonte-corpo);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--cor-texto-forte);
+    opacity: 0.68;
+    padding-bottom: 6px;
+  }
+
+  .nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    height: 2px;
+    background: var(--cor-destaque);
+    transition: right 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  .nav a.ativo,
+  .nav a:hover {
+    opacity: 1;
+  }
+
+  .nav a.ativo::after,
+  .nav a:hover::after {
+    right: 0;
+  }
+
+  @media (max-width: 640px) {
+    .header-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .nav {
+      gap: 1.1rem;
+    }
+  }
+</style>

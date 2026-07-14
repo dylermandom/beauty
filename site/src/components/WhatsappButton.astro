@@ -1,0 +1,43 @@
+---
+interface Props {
+  mensagem?: string;
+  flutuante?: boolean;
+  texto?: string;
+}
+
+const {
+  mensagem = "Oi, princess! Vim pelo site e quero agendar meu horário 💫",
+  flutuante = false,
+  texto = "Chamar no WhatsApp",
+} = Astro.props;
+
+const numero = "5581998700018";
+const href = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={flutuante ? "whats-flutuante botao" : "botao"}
+>
+  {texto}
+</a>
+
+<style>
+  .whats-flutuante {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 40;
+  }
+
+  @media (max-width: 640px) {
+    .whats-flutuante {
+      bottom: 1rem;
+      right: 1rem;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.8rem;
+    }
+  }
+</style>

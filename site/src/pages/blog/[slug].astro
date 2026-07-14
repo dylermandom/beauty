@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Base title={post.data.title} description={post.data.excerpt}>
+  <article class="secao">
+    <div class="container conteudo-post">
+      <p class="rotulo">{post.data.date.toLocaleDateString("pt-BR")}</p>
+      <h1>{post.data.title}</h1>
+      <div class="corpo">
+        <Content />
+      </div>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .conteudo-post {
+    max-width: 720px;
+  }
+
+  .corpo {
+    margin-top: 2rem;
+    font-size: 1.15rem;
+  }
+
+  .corpo :global(h2) {
+    margin-top: 2rem;
+  }
+</style>

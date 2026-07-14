@@ -17,6 +17,10 @@ Thumbs.db
 # Dependências
 node_modules/
 
+# Build do site
+site/dist/
+site/.astro/
+
 # Arquivos temporários
 *.log
 *.tmp

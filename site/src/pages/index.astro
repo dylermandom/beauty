@@ -1,0 +1,333 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import ResultCard from "../components/ResultCard.astro";
+import WhatsappButton from "../components/WhatsappButton.astro";
+import thaiseFerramentas from "../assets/profissional/thaise-ferramentas.png";
+import thaiseEstudio from "../assets/profissional/thaise-estudio.png";
+
+const fotos = Object.values(
+  import.meta.glob<{ default: import("astro").ImageMetadata }>(
+    "../assets/resultados/*.{jpg,jpeg,JPG,JPEG}",
+    { eager: true }
+  )
+).map((m) => m.default);
+
+const prevista = fotos.slice(0, 4);
+---
+
+<Base title="Início">
+  <section class="secao hero">
+    <div class="mancha mancha-1 mancha-hero-a"></div>
+    <div class="mancha mancha-2 mancha-hero-b"></div>
+
+    <div class="container hero-grid">
+      <div class="hero-texto reveal">
+        <p class="rotulo">Especialista em Brow Lamination &amp; Lash Lifting</p>
+        <h1>Técnica e cuidado<br />para o seu <em>olhar</em>.</h1>
+        <p class="lead">
+          Do diagnóstico à finalização, cada procedimento é feito com
+          precisão pra você acordar sempre bonita, princess — sem
+          extensões, sem exagero, só o seu olhar realçado do jeito certo.
+        </p>
+        <div class="hero-cta">
+          <WhatsappButton texto="Agendar minha experiência" />
+          <a href="/resultados" class="botao botao-outline">Ver resultados</a>
+        </div>
+      </div>
+
+      <div class="hero-retrato reveal" style="--atraso: 0.15s">
+        <div class="mancha mancha-2 mancha-retrato"></div>
+        <div class="hero-foto-principal cursor-alvo">
+          <Image
+            src={thaiseEstudio}
+            alt="Thaise, especialista em brow lamination e lash lifting"
+            width={840}
+            quality={90}
+            class="foto"
+          />
+        </div>
+        <div class="hero-foto-selo tilt cursor-alvo">
+          <Image
+            src={thaiseFerramentas}
+            alt="Detalhe do trabalho de Thaise, especialista em lash lifting"
+            width={320}
+            quality={90}
+            class="foto"
+          />
+        </div>
+        <p class="etiqueta-foto rotulo">Thaise · Especialista</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="secao servicos">
+    <div class="container">
+      <p class="rotulo reveal">O que fazemos</p>
+      <h2 class="reveal">Cuidado feito pra durar</h2>
+      <div class="grid-servicos">
+        <div class="cartao servico reveal">
+          <span class="numero">01</span>
+          <h3>Brow lamination</h3>
+          <p>
+            Sobrancelhas alinhadas, cheias e no formato perfeito pro seu
+            rosto — sem precisar preencher todo dia.
+          </p>
+        </div>
+        <div class="cartao servico reveal" style="--atraso: 0.12s">
+          <span class="numero">02</span>
+          <h3>Lash lifting</h3>
+          <p>
+            Cílios curvados e realçados com o efeito de uma extensão, do
+            jeito mais natural e saudável pra sua pele.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {
+    prevista.length > 0 && (
+      <section class="secao resultados-prevista">
+        <div class="mancha mancha-1 mancha-prevista" />
+        <div class="container">
+          <p class="rotulo reveal">Prova real</p>
+          <h2 class="reveal">Resultados que falam por si</h2>
+          <div class="grid-resultados disperso">
+            {prevista.map((foto, i) => (
+              <ResultCard imagem={foto} atraso={i * 0.1} />
+            ))}
+          </div>
+          <a href="/resultados" class="botao botao-outline reveal" style="margin-top: 2rem;">
+            Ver galeria completa
+          </a>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="secao cta-final">
+    <div class="container cta-final-inner reveal">
+      <h2>Pronta pra se sentir ainda mais você?</h2>
+      <p>Chama a gente no WhatsApp e agenda sua experiência exclusiva.</p>
+      <WhatsappButton texto="Falar com a Thaise agora" />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    padding-top: 3rem;
+    padding-bottom: 7rem;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--cor-fundo), var(--cor-fundo-2));
+  }
+
+  .mancha-hero-a {
+    width: 620px;
+    height: 420px;
+    top: -10rem;
+    left: -16rem;
+  }
+
+  .mancha-hero-b {
+    width: 380px;
+    height: 380px;
+    bottom: -10rem;
+    right: -10rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .hero-texto {
+    max-width: 560px;
+  }
+
+  .hero-texto h1 {
+    margin-left: -0.05em;
+  }
+
+  .hero-texto em {
+    font-style: normal;
+    color: var(--cor-destaque);
+  }
+
+  .lead {
+    font-size: 1.3rem;
+    max-width: 460px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.75rem;
+  }
+
+  .hero-retrato {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .mancha-retrato {
+    width: 120%;
+    height: 92%;
+    top: -4%;
+    left: -10%;
+    opacity: 0.7;
+  }
+
+  .hero-foto-principal {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    border-radius: 200px 200px 28px 28px;
+    box-shadow: var(--sombra-forte);
+    border: 8px solid #fffdfb;
+  }
+
+  .hero-foto-principal .foto {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hero-foto-selo {
+    position: absolute;
+    z-index: 2;
+    width: 34%;
+    bottom: -1.5rem;
+    left: -1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: var(--sombra-quente);
+    border: 6px solid #fffdfb;
+    --rot: -6deg;
+  }
+
+  .hero-foto-selo .foto {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: top;
+  }
+
+  .etiqueta-foto {
+    position: absolute;
+    right: 0.5rem;
+    top: 1rem;
+    z-index: 2;
+    background: #fffdfb;
+    padding: 0.5rem 1.1rem;
+    border-radius: 999px;
+    box-shadow: var(--sombra-media);
+    margin: 0;
+  }
+
+  @media (max-width: 880px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero-texto {
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .lead {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-cta {
+      justify-content: center;
+    }
+
+    .hero-retrato {
+      margin-top: 2rem;
+    }
+  }
+
+  .servicos {
+    background: #fffdfb;
+    border-radius: 56px 56px 0 0;
+    margin-top: -4.5rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 -30px 60px rgba(43, 29, 26, 0.08);
+    padding-top: 4.5rem;
+  }
+
+  .grid-servicos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 780px;
+    margin: 2.5rem auto 0;
+  }
+
+  .servico {
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .numero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.25rem;
+    border-radius: 50%;
+    background: var(--cor-fundo-2);
+    font-family: var(--fonte-destaque);
+    font-size: 1.6rem;
+    color: var(--cor-destaque);
+  }
+
+  .resultados-prevista {
+    background: var(--cor-fundo-2);
+    overflow: hidden;
+  }
+
+  .mancha-prevista {
+    width: 460px;
+    height: 400px;
+    top: 1rem;
+    right: -12rem;
+  }
+
+  .grid-resultados {
+    columns: 4 220px;
+    column-gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .grid-resultados :global(.resultado) {
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 720px) {
+    .grid-resultados {
+      columns: 2 200px;
+    }
+  }
+
+  .cta-final-inner {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .cta-final-inner > :global(.botao) {
+    margin-top: 1rem;
+  }
+</style>

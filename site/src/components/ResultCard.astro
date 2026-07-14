@@ -1,0 +1,46 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  imagem: ImageMetadata;
+  legenda?: string;
+  atraso?: number;
+}
+
+const { imagem, legenda, atraso = 0 } = Astro.props;
+---
+
+<figure class="cartao resultado tilt reveal cursor-alvo" style={`--atraso: ${atraso}s`}>
+  <Image
+    src={imagem}
+    alt={legenda ?? "Resultado Thaise Beauty Studio"}
+    width={640}
+    class="foto"
+  />
+  {legenda && <figcaption>{legenda}</figcaption>}
+</figure>
+
+<style>
+  .resultado {
+    margin: 0 0 1.25rem;
+    break-inside: avoid;
+    box-shadow: var(--sombra-media);
+  }
+
+  .resultado:hover {
+    box-shadow: var(--sombra-quente);
+  }
+
+  .foto {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  figcaption {
+    padding: 0.85rem 1.1rem;
+    font-family: var(--fonte-corpo);
+    font-size: 0.95rem;
+  }
+</style>

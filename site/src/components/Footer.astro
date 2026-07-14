@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+import logo from "../assets/logo-fundo-escuro.jpeg";
+---
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-marca">
+      <Image src={logo} alt="Thaise Beauty Studio" width={56} height={56} class="logo" />
+      <div>
+        <p class="rotulo" style="margin-bottom: 0.25rem;">Thaise Beauty Studio</p>
+        <p style="margin: 0; opacity: 0.85;">Limoeiro-PE · Brow lamination · Lash lifting</p>
+      </div>
+    </div>
+
+    <div class="footer-links">
+      <a href="https://instagram.com/thaisebeautystudio" target="_blank" rel="noopener noreferrer">
+        @thaisebeautystudio
+      </a>
+      <a href="https://wa.me/5581998700018" target="_blank" rel="noopener noreferrer">
+        81 99870-0018
+      </a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--cor-fundo-alt);
+    color: var(--cor-texto-claro);
+    margin-top: 4rem;
+  }
+
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .footer-marca {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .logo {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: var(--cor-texto-claro);
+    font-family: var(--fonte-corpo);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    font-weight: 600;
+    opacity: 0.9;
+  }
+
+  .footer-links a:hover {
+    opacity: 1;
+  }
+</style>

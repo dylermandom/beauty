@@ -1,0 +1,36 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import WhatsappButton from "../components/WhatsappButton.astro";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = "Thaise Beauty Studio — brow lamination e lash lifting em Limoeiro-PE. Destaque seu olhar sem extensões.",
+} = Astro.props;
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} · Thaise Beauty Studio</title>
+  </head>
+  <body>
+    <p class="tag-lateral">Thaise Beauty Studio · Limoeiro-PE</p>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <WhatsappButton flutuante texto="WhatsApp" />
+    <script src="../scripts/interacao.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,84 @@
+---
+import Base from "../layouts/Base.astro";
+import ResultCard from "../components/ResultCard.astro";
+import WhatsappButton from "../components/WhatsappButton.astro";
+
+const fotos = Object.values(
+  import.meta.glob<{ default: import("astro").ImageMetadata }>(
+    "../assets/resultados/*.{jpg,jpeg,JPG,JPEG}",
+    { eager: true }
+  )
+).map((m) => m.default);
+---
+
+<Base
+  title="Resultados"
+  description="Fotos reais de resultados de brow lamination e lash lifting do Thaise Beauty Studio."
+>
+  <section class="secao">
+    <div class="mancha mancha-1 mancha-1-pos"></div>
+    <div class="container cabecalho reveal">
+      <p class="rotulo">Galeria</p>
+      <h1>Resultados reais</h1>
+      <p class="lead">
+        Cada olhar é único, princess. Aqui estão alguns dos resultados que
+        já saíram daqui.
+      </p>
+    </div>
+
+    <div class="container">
+      <div class="mosaico disperso">
+        {fotos.map((foto, i) => (
+          <ResultCard imagem={foto} atraso={(i % 4) * 0.1} />
+        ))}
+      </div>
+
+      <div class="cta reveal">
+        <p class="rotulo">Quer um olhar assim também?</p>
+        <WhatsappButton texto="Agendar minha experiência" />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .mancha-1-pos {
+    width: 420px;
+    height: 420px;
+    top: -8rem;
+    right: -10rem;
+  }
+
+  .cabecalho {
+    max-width: 640px;
+    margin-bottom: 3rem;
+  }
+
+  .lead {
+    font-size: 1.2rem;
+  }
+
+  .mosaico {
+    columns: 3 260px;
+    column-gap: 1.5rem;
+  }
+
+  .mosaico :global(.resultado) {
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 720px) {
+    .mosaico {
+      columns: 2 200px;
+    }
+  }
+
+  .cta {
+    text-align: center;
+    margin-top: 3rem;
+  }
+
+  .cta > :global(.botao) {
+    margin-top: 1rem;
+  }
+</style>

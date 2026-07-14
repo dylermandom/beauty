@@ -1,0 +1,70 @@
+---
+import Base from "../layouts/Base.astro";
+import ReviewCard from "../components/ReviewCard.astro";
+import WhatsappButton from "../components/WhatsappButton.astro";
+
+// Adicione avaliações reais aqui conforme forem chegando (Google, print de cliente):
+// { nome: "Nome da cliente", texto: "Depoimento real", nota: 5 }
+const avaliacoes: { nome: string; texto: string; nota?: number }[] = [];
+---
+
+<Base
+  title="Avaliações"
+  description="O que as clientes do Thaise Beauty Studio dizem sobre a experiência."
+>
+  <section class="secao">
+    <div class="mancha mancha-2 mancha-1-pos"></div>
+    <div class="container">
+      <p class="rotulo reveal">Depoimentos</p>
+      <h1 class="reveal">O que dizem as clientes</h1>
+
+      {
+        avaliacoes.length > 0 ? (
+          <div class="grid-reviews">
+            {avaliacoes.map((a) => (
+              <ReviewCard nome={a.nome} texto={a.texto} nota={a.nota} />
+            ))}
+          </div>
+        ) : (
+          <div class="cartao em-breve reveal" style="--atraso: 0.1s">
+            <p class="lead">
+              Estamos organizando as avaliações reais das nossas clientes
+              por aqui, princess. Enquanto isso, chama a gente no
+              WhatsApp — é rapidinho pra tirar qualquer dúvida.
+            </p>
+            <WhatsappButton texto="Falar no WhatsApp" />
+          </div>
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .grid-reviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .mancha-1-pos {
+    width: 400px;
+    height: 400px;
+    top: -6rem;
+    left: -12rem;
+  }
+
+  .em-breve {
+    margin-top: 2.5rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    max-width: 600px;
+    box-shadow: var(--sombra-media);
+  }
+
+  .em-breve .lead {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+</style>
